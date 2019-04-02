@@ -1,20 +1,8 @@
 const Koa = require('koa');
-const router = require('koa-router')();
 const app = new Koa();
+const router = require('./router/router.js');
 
-
-app.use(async (ctx, next) => {
-  console.log(1)
-  ctx.body = "hello world";
-  await next();
-});
-app.use(async (ctx, next) => {
-  console.log(2);
-});
-app.use(async (ctx, next) => {
-  console.log(3);
-});
-  
-app.listen(3000,() => {
+app.use(router.routes());
+app.listen(3000, '172.18.10.136' () => {
   console.log('The serve is Running');
 })
